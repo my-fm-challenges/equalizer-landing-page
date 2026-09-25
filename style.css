@@ -1,0 +1,389 @@
+@font-face {
+  font-display: swap;
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/ibm-plex-sans-v23-latin-regular.woff2") format("woff2");
+}
+@font-face {
+  font-display: swap;
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 700;
+  src: url("fonts/ibm-plex-sans-v23-latin-700.woff2") format("woff2");
+}
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  h1,
+  h2,
+  h3,
+  ul,
+  body,
+  p {
+    margin: 0;
+  }
+}
+
+:root {
+  --clr-cyan: #66e2dc;
+  --clr-orange: #fa7453;
+  --clr-white: #fcfaf9;
+  --clr-slate: #191826;
+  --clr-yellow: #ffb964;
+
+  --spacing-2500: 200px;
+  --spacing-1600: 128px;
+  --spacing-1400: 112px;
+  --spacing-1000: 80px;
+  --spacing-800: 64px;
+  --spacing-700: 56px;
+  --spacing-600: 48px;
+  --spacing-500: 40px;
+  --spacing-400: 32px;
+  --spacing-300: 24px;
+  --spacing-250: 20px;
+  --spacing-200: 16px;
+  --spacing-100: 8px;
+
+  --font-base: "IBM Plex Sans", system-ui, sans-serif;
+
+  --content-max: 70rem;
+  --gutter: var(--spacing-250);
+  --radius-12: 12px;
+  --radius-16: 16px;
+}
+
+body {
+  font-family: var(--font-base);
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--clr-slate);
+  background-color: var(--clr-white);
+
+  /* background-image: url(temp/square-red.png); */
+  background-image: url(assets/bg-main-mobile.png);
+  background-repeat: no-repeat;
+  background-position: -10% -25%;
+}
+
+.icon {
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.container {
+  /* Контент ровно 1120, как в макете. Больше эта строка ничего не делает. */
+  box-sizing: content-box;
+  padding-inline: var(--gutter);
+  max-inline-size: var(--content-max);
+  margin-inline: auto;
+}
+
+.container--full-mobile {
+  padding-inline: 0; /* Убираем отступы, чтобы блок встал вплотную к краям экрана */
+}
+
+/* HEADER */
+.header {
+  margin-block-start: var(--spacing-800);
+}
+
+/* HERO */
+
+.hero__title {
+  /* fluid h1 (hero__title) */
+  --hero-title-h1: clamp(2.5rem, 1.4437rem + 4.507vw, 5.5rem);
+  /* margin-top для hero__title */
+  --hero-title-margin-block-start: clamp(4rem, 0.1832rem + 16.285vw, 8rem);
+
+  margin-block-start: var(--hero-title-margin-block-start);
+  font-size: var(--hero-title-h1);
+  text-wrap: balance;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.025em;
+}
+
+.hero__text {
+  /* hero__text */
+  --hero-text-max-inline-size: 46rem;
+
+  margin-block-start: var(--spacing-500);
+  max-inline-size: var(--hero-text-max-inline-size);
+}
+
+/* PLAN */
+
+.plan {
+  /* вылеты */
+  --overhang: clamp(110px, 106.1268px + 1.0329vw, 121px);
+
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-block-start: var(--spacing-800);
+
+  &::before {
+    grid-area: 1 / 1;
+
+    content: "";
+    background-color: var(--clr-slate);
+    background-image: url(assets/bg-pattern-2.svg);
+    background-repeat: no-repeat;
+    background-position: 45% top;
+
+    /* на mobile только сверху, опишем явно что снизу 0 */
+    margin-block-start: var(--overhang);
+    margin-block-end: 0;
+  }
+}
+
+.plan__image {
+  --plan-image-max-inline-size: clamp(210px, 185.3521px + 6.5728vw, 280px);
+  /* margin-bottom -- на mobile */
+  --phone-margin-block-end: 60px;
+
+  grid-area: 1 / 1;
+
+  display: block;
+  max-inline-size: var(--plan-image-max-inline-size);
+  block-size: auto;
+
+  justify-self: center;
+
+  margin-block-end: var(--phone-margin-block-end);
+}
+
+.plan__body {
+  /* адаптивный padding для plan__body */
+  --plan-body-padding: clamp(48px, 38.8571px + 1.1905vw, 56px);
+
+  background-color: var(--clr-orange);
+  grid-area: 2/1;
+
+  padding: var(--plan-body-padding);
+}
+
+.plan__title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2; /* 44px */
+}
+
+.plan__text {
+  margin-block-start: var(--spacing-300);
+  font-size: 1.25rem;
+}
+
+.plan__price {
+  margin-block-start: var(--spacing-500);
+
+  display: flex;
+  gap: var(--spacing-200);
+  align-items: center;
+}
+
+.plan__amount {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1.1; /* 70.4px */
+}
+.plan__period {
+  font-size: 1.25rem;
+}
+
+.plan__buttons {
+  margin-block-start: var(--spacing-600);
+  display: grid;
+  gap: var(--spacing-200);
+
+  /* только на mobile */
+  margin-block-end: var(--spacing-800);
+}
+
+.plan__download {
+  display: flex;
+  gap: var(--spacing-100);
+  padding-inline: var(--spacing-400);
+  padding-block: var(--spacing-200);
+  border-radius: var(--radius-12);
+
+  font-size: 1.125rem;
+  font-weight: 700;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.plan__download--dark {
+  background-color: var(--clr-slate);
+  color: var(--clr-white);
+}
+
+.plan__download--dark:hover {
+  background-color: var(--clr-cyan);
+  color: var(--clr-slate);
+}
+
+.plan__download--light {
+  background-color: var(--clr-white);
+  color: var(--clr-slate);
+}
+
+.plan__download--light:hover {
+  background-color: var(--clr-yellow);
+}
+
+.plan__download:focus-visible {
+  outline: 2px solid var(--clr-slate);
+  outline-offset: 2px;
+}
+
+.plan__download-icon {
+  inline-size: 18px;
+  block-size: 20px;
+}
+
+/* FOOTER */
+.footer {
+  /* margin top для footer */
+  --footer-margin-block-start: clamp(4rem, 2.3055rem + 7.23vw, 8.8125rem);
+
+  display: grid;
+  grid-template-areas: "logo" "text" "social";
+  row-gap: var(--spacing-400);
+  margin-block-start: var(--footer-margin-block-start);
+  margin-block-end: var(--spacing-1000);
+}
+
+.footer__email {
+  font-weight: 700;
+  color: inherit;
+  display: block;
+}
+
+.footer__email:focus-visible {
+  outline: 2px solid var(--clr-slate);
+  outline-offset: 2px;
+}
+
+.footer__logo {
+  grid-area: logo;
+}
+
+.footer__text {
+  grid-area: text;
+}
+
+.footer__socials {
+  grid-area: social;
+  align-self: center;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: var(--spacing-400);
+}
+
+.footer__social-link {
+  color: var(--clr-slate);
+  display: flex;
+}
+
+.footer__social-link:hover {
+  color: var(--clr-orange);
+}
+
+.footer__social-link:focus-visible {
+  outline: 2px solid var(--clr-slate);
+  outline-offset: 2px;
+}
+
+.footer__icon {
+  inline-size: 20px;
+  aspect-ratio: 1;
+}
+
+@media (width >= 768px) {
+  body {
+    background-image: url(assets/bg-main-tablet.png), url(assets/bg-pattern-1.svg);
+    /* здесь надо еще доработать */
+    background-position:
+      right top,
+      right -51px top -41px;
+  }
+
+  .container--full-mobile {
+    padding-inline: var(--gutter);
+  }
+
+  .plan {
+    margin-block-start: var(--spacing-1600);
+
+    &::before {
+      border-radius: var(--radius-12);
+      margin-block: var(--overhang);
+    }
+  }
+
+  .plan__body {
+    /* ширина карточки PREMIUM EQ начиная с TABLET версии */
+    --plan-body-max-inline-size: clamp(356px, 177.7143px + 23.2143vw, 512px);
+
+    border-radius: var(--radius-16);
+    grid-area: 1/1;
+
+    align-self: end;
+    justify-self: end;
+    max-inline-size: var(--plan-body-max-inline-size);
+
+    margin-block-start: var(--spacing-2500);
+    margin-inline-end: var(--spacing-800);
+  }
+
+  .plan__image {
+    /* margin слева от телефона (plan__image) растет от TABLET */
+    --plan-image-margin-start: clamp(42px, -42.5714px + 11.0119vw, 116px);
+
+    margin-inline-start: var(--plan-image-margin-start);
+    justify-self: start;
+    align-self: start;
+    margin-block: 0;
+  }
+
+  .footer {
+    grid-template-areas:
+      "logo ."
+      "text social";
+  }
+
+  .footer__socials {
+    justify-content: end;
+  }
+
+  .plan__buttons {
+    /* отступ только на mobile */
+    margin-block-end: 0;
+  }
+}
+
+@media (width >= 1024px) {
+  body {
+    background-image: url(assets/bg-main-desktop.png), url(assets/bg-pattern-1.svg);
+    background-position:
+      75% 60%,
+      right -51px top -41px;
+  }
+
+  .footer {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: "logo text social";
+  }
+
+  .footer__logo {
+    margin-inline-end: var(--spacing-1600);
+  }
+}

@@ -4,8 +4,8 @@ My solution to the [Equalizer landing page challenge](https://www.frontendmentor
 
 ![Screenshot](./screenshot.jpg)
 
-- Live site: [link](https://your-live-site-url.com)
-- Solution: [link](https://your-solution-url.com)
+- Live site: [link](https://my-fm-challenges.github.io/equalizer-landing-page/)
+- Solution: [link](https://github.com/my-fm-challenges/equalizer-landing-page)
 
 ## Built with
 
